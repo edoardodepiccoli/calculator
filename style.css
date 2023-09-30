@@ -38,39 +38,48 @@ body {
   margin: 6px;
 }
 
-.calculator div:hover{
+.calculator div:hover {
   transform: scale(1.02);
   background-color: #e6fcf5;
 }
 
 .calculator .display-top:hover,
-.calculator .display-bottom:hover{
+.calculator .display-bottom:hover {
   transform: scale(1);
   background-color: white;
 }
 
-.calculator .display-top{
+.calculator .display-top {
   grid-column: 1/5;
   display: flex;
   justify-content: flex-end;
   font-size: small;
 }
 
-.display-bottom{
+.display-bottom {
   grid-column: 1/5;
   display: flex;
   justify-content: flex-end;
 }
 
-.calculator .clear{
+.calculator .clear {
   grid-column: 1/3;
   background-color: #ffe3e3;
 }
 
-.delete{
+.delete {
   grid-column: 3/5;
 }
 
-.calculator .operation{
+.calculator .operation {
   background-color: #e7f5ff;
+}
+
+@media (max-width: 800px) {
+  body {
+    width: 100%;
+  }
+  .calculator {
+    width: 80%;
+  }
 }
