@@ -61,6 +61,13 @@ function appendNumber(text){
 
 function deleteNumber(){
     if(currentOperationDisplay.textContent==="0" || currentOperationDisplay.textContent==="") return
+
+    let lastIndex = currentOperationDisplay.textContent.length-1
+    let lastIndexLastOp = lastOperationDisplay.textContent.length-1
+    if(lastOperationDisplay.textContent[lastIndexLastOp]===currentOperationDisplay.textContent[lastIndex]) {
+        lastOperationDisplay.textContent = lastOperationDisplay.textContent.slice(0,-1)
+    }
+
     currentOperationDisplay.textContent = currentOperationDisplay.textContent.slice(0,-1)
 }
 
@@ -78,31 +85,33 @@ function addDot(){
 
 function setOperation(text){
     console.log(currentOperation)
+    console.log(text)
     if(currentOperation!=null && shouldClearDisplay===true) {
         console.log("change operator")
         currentOperationDisplay.textContent = text
-        if("="===currentOperation){
-            console.log("="===currentOperation)
-            lastOperationDisplay.textContent = lastOperationDisplay.textContent.slice(0,-1)
-            lastOperationDisplay.textContent += text
-        }
         lastOperationDisplay.textContent += text
         currentOperation = text
         shouldClearDisplay = true
     }
     else if(currentOperation!=null && shouldClearDisplay===false) {
+        console.log("should compute")
         secondOperand = currentOperationDisplay.textContent
         lastOperationDisplay.textContent += `${secondOperand}=`
         let result = operate(currentOperation, Number(firstOperand), Number(secondOperand))
         currentOperationDisplay.textContent = result
         lastOperationDisplay.textContent += result
+        if(text!="=") lastOperationDisplay.textContent += text
         firstOperand = Number(result)
         shouldClearDisplay = true
+        currentOperation = text
         return
     }
     else{
+        console.log("normal operation")
         firstOperand = Number(currentOperationDisplay.textContent)
         lastOperationDisplay.textContent = firstOperand + text
+        // secondOperand = currentOperationDisplay.textContent
+        // lastOperationDisplay.textContent += `${secondOperand}=`
         currentOperationDisplay.textContent = text
         currentOperation = text
         shouldClearDisplay = true
