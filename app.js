@@ -72,6 +72,7 @@ function addDot(){
         return
     }
     if(text[lastIndex]===".") return
+    if(text.includes(".")) return
     currentOperationDisplay.textContent += "."
 }
 
