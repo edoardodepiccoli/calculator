@@ -107,11 +107,17 @@ function setOperation(text) {
 
 function evaluate() {
   if (firstOperand === null || currentOperation === null) {
-    console.log("not possible");
+    alert("not possible");
     return;
   }
   secondOperand = bottomd.textContent;
   topd.textContent += `${secondOperand} =`;
+
+  if (secondOperand === "0") {
+    alert("cannot divide by zero");
+    clearAll();
+    return;
+  }
 
   let result = operate(
     currentOperation,
