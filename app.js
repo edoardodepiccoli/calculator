@@ -113,7 +113,7 @@ function evaluate() {
   secondOperand = bottomd.textContent;
   topd.textContent += `${secondOperand} =`;
 
-  if (secondOperand === "0") {
+  if (secondOperand === "0" && firstOperand != "0") {
     alert("cannot divide by zero");
     clearAll();
     return;
