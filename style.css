@@ -101,3 +101,19 @@ body {
   grid-column-start: 4;
   grid-column-end: 4;
 }
+
+/* active button */
+
+.operand-button:hover {
+  background-color: #d4d4d2;
+  color: #505050;
+}
+
+.operator-button {
+  transition: all 0.2s;
+}
+
+.operation-active {
+  background-color: #d4d4d2;
+  color: #ff9500;
+}
