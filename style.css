@@ -1,7 +1,7 @@
 /* basic styles */
 
 :root {
-  --default-button-dimension: 100px;
+  --default-button-dimension: 50px;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
   color: #d4d4d2;
 
   font-family: sans-serif;
-  font-size: 48px;
+  font-size: 24px;
 
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
@@ -64,7 +64,7 @@ body {
 
 #display {
   width: 100%;
-  font-size: 64px;
+  font-size: 48px;
 
   text-align: right;
   padding-right: 20px;
@@ -85,7 +85,7 @@ body {
 
 #zero-button {
   /* to manually change every time detault-button-dimension is updated */
-  padding-right: 110px;
+  padding-right: 60px;
   border-radius: var(--default-button-dimension);
 
   grid-column-start: 1;
