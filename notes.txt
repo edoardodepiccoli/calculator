@@ -46,8 +46,6 @@ else if firstOperand has already been selected user can click again on number bu
 let firstOperand
 let secondOperand
 let currentOperation
-let inOperation
-let justCompleted
 
 operate(){
     if the first operand doesnt exist || the operation is not set then do nothing and return

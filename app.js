@@ -1,6 +1,37 @@
 let firstOperand = null;
 let secondOperand = null;
-let currentOperation = null;
+let currentOperator = null;
+
+function log() {
+  console.log(
+    `first = ${firstOperand}, second = ${secondOperand}, current = ${currentOperator}`
+  );
+}
+
+function operate() {
+  if (!firstOperand || !currentOperator) return;
+
+  if (!secondOperand) secondOperand = firstOperand;
+
+  switch (currentOperator) {
+    case "add":
+      firstOperand += secondOperand;
+      log();
+      break;
+    case "subtract":
+      firstOperand -= secondOperand;
+      log();
+      break;
+    case "multiply":
+      firstOperand *= secondOperand;
+      log();
+      break;
+    case "divide":
+      firstOperand /= secondOperand;
+      log();
+      break;
+  }
+}
 
 // dom references
 const buttonsContainer = document.querySelector(".buttons-container");
