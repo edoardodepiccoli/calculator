@@ -111,6 +111,7 @@ body {
 
 .operator-button,
 .operand-button,
+.utility-button,
 #compute-button {
   transition: all 0.2s;
 }

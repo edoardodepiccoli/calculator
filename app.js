@@ -118,8 +118,6 @@ function reset() {
   toOperate = false;
   startAgain = false;
 
-  buttonRef = null;
-
   display.innerText = 0;
 }
 
@@ -141,6 +139,65 @@ function changeSign() {
           updateDisplay(second);
         } else {
           second = -second;
+          updateDisplay(second);
+        }
+      }
+    }
+  }
+
+  log();
+}
+
+function percent() {
+  if (first === null || startAgain) {
+    first = Number(first / 100);
+    updateDisplay(first);
+  } else {
+    if (operator === null) {
+      first = Number(first / 100);
+      updateDisplay(first);
+    } else {
+      if (second === null) {
+        second = Number(second / 100);
+        updateDisplay(second);
+      } else {
+        if (toOperate) {
+          second = Number(second / 100);
+          updateDisplay(second);
+        } else {
+          second = Number(second / 100);
+          updateDisplay(second);
+        }
+      }
+    }
+  }
+
+  log();
+}
+
+function addDot(value) {
+  if (value.includes(".")) return value;
+  else return value + ".";
+}
+
+function dot() {
+  if (first === null || startAgain) {
+    first = addDot(first);
+    updateDisplay(first);
+  } else {
+    if (operator === null) {
+      first = addDot(first);
+      updateDisplay(first);
+    } else {
+      if (second === null) {
+        second = addDot(second);
+        updateDisplay(second);
+      } else {
+        if (toOperate) {
+          second = addDot(second);
+          updateDisplay(second);
+        } else {
+          second = addDot(second);
           updateDisplay(second);
         }
       }
