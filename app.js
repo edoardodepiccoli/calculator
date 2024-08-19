@@ -71,6 +71,23 @@ function handleOperator(value) {
   log();
 }
 
+function handleCompute() {
+  if (first === null || operator === null) {
+    return;
+  } else {
+    if (second === null) {
+      second = first;
+      toOperate = true;
+      operate();
+    } else {
+      operate();
+    }
+  }
+
+  startAgain = true;
+  log();
+}
+
 // dom references
 const buttonsContainer = document.querySelector(".buttons-container");
 
