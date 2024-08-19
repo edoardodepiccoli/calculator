@@ -14,13 +14,10 @@
       <div id="display">0</div>
       <div class="buttons-container">
         <!-- 4x5 grid with the calculator buttons achieved using grid -->
-        <div class="utility-button button">AC</div>
-        <div class="utility-button button">+/-</div>
-        <div class="utility-button button">%</div>
-        <div
-          class="operator-button button operation-active"
-          data-operation="divide"
-        >
+        <div class="utility-button button" data-util="reset">AC</div>
+        <div class="utility-button button" data-util="change-sign">+/-</div>
+        <div class="utility-button button" data-util="percent">%</div>
+        <div class="operator-button button" data-operation="divide">
           &divide;
         </div>
 
@@ -42,7 +39,9 @@
         <div class="operator-button button" data-operation="add">+</div>
 
         <div id="zero-button" class="operand-button button">0</div>
-        <div id="dot-button" class="utility-button button">.</div>
+        <div id="dot-button" class="utility-button button" data-util="dot">
+          .
+        </div>
         <div
           id="operate-button"
           class="compute-button button"

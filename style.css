@@ -109,7 +109,9 @@ body {
   color: #505050;
 }
 
-.operator-button {
+.operator-button,
+.operand-button,
+#compute-button {
   transition: all 0.2s;
 }
 

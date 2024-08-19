@@ -110,6 +110,64 @@ function handleCompute(ref) {
   log();
 }
 
+function reset() {
+  first = null;
+  second = null;
+  operator = null;
+
+  toOperate = false;
+  startAgain = false;
+
+  buttonRef = null;
+
+  display.innerText = 0;
+}
+
+function changeSign() {
+  if (first === null || startAgain) {
+    first = -first;
+    updateDisplay(first);
+  } else {
+    if (operator === null) {
+      first = -first;
+      updateDisplay(first);
+    } else {
+      if (second === null) {
+        second = -second;
+        updateDisplay(second);
+      } else {
+        if (toOperate) {
+          second = -second;
+          updateDisplay(second);
+        } else {
+          second = -second;
+          updateDisplay(second);
+        }
+      }
+    }
+  }
+
+  log();
+}
+
+function handleUtility(value, ref) {
+  if (buttonRef) removeActiveClass();
+  buttonRef = ref;
+  addActiveClass();
+
+  if (value === "reset") {
+    reset();
+  } else if (value === "change-sign") {
+    changeSign();
+  } else if (value === "dot") {
+    dot();
+  } else if (value === "percent") {
+    percent();
+  }
+
+  log();
+}
+
 // dom references
 const buttonsContainer = document.querySelector(".buttons-container");
 const display = document.querySelector("#display");
@@ -127,6 +185,7 @@ buttonsContainer.addEventListener("click", (e) => {
     handleCompute(e.target);
   } else if (e.target.matches(".utility-button")) {
     console.log("clicked utility button");
+    handleUtility(e.target.dataset.util, e.target);
   }
 });
 
