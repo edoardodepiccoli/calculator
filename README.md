@@ -12,9 +12,11 @@ Try it live on [this link](https://edoardodepiccoli.github.io/calculator/)
 - Decouple logic and UI
 - Add undo feature (delete last digit from number on display)
 - Add history feature
+- Add some sort of responsiveness to the UI, since now it's very small and the grid layout is a little bit rushed (css was not the orimary focus with this exercise)
 
 ## Lessons Learned
 
 - It was very hard keeping track of wether the calculator was in the middle of the operation or not. I still have to fix the logic behind it but I felt like I learned to come up with a solution (even if a crappy one) all by myself.
 - I learned a bit of CSS grid
 - I learned that writing pseudocode can be great but it has to be correct or it can actually harm your app development if you don't know what you are doing (me, lol)
+- Event delegation, pretty cool, makes you write less code and makes the page perform better, nice
