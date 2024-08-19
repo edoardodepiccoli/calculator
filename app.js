@@ -2,6 +2,8 @@ let firstOperand = null;
 let secondOperand = null;
 let currentOperator = null;
 
+let toCompute = false;
+
 function log() {
   console.log(
     `first = ${firstOperand}, second = ${secondOperand}, current = ${currentOperator}`
@@ -9,27 +11,76 @@ function log() {
 }
 
 function operate() {
-  if (!firstOperand || !currentOperator) return;
+  if (!firstOperand || !currentOperator) {
+    console.log("missing first operand or operator");
+    log();
+    return;
+  }
 
-  if (!secondOperand) secondOperand = firstOperand;
+  if (!secondOperand) {
+    console.log(
+      "missing second operand, assigning first operand value to second operand"
+    );
+    secondOperand = firstOperand;
+  }
+
+  log();
 
   switch (currentOperator) {
     case "add":
-      firstOperand += secondOperand;
+      firstOperand = Number(firstOperand) + Number(secondOperand);
       log();
       break;
     case "subtract":
-      firstOperand -= secondOperand;
+      firstOperand = Number(firstOperand) - Number(secondOperand);
       log();
       break;
     case "multiply":
-      firstOperand *= secondOperand;
+      firstOperand = Number(firstOperand) * Number(secondOperand);
       log();
       break;
     case "divide":
-      firstOperand /= secondOperand;
+      firstOperand = Number(firstOperand) / Number(secondOperand);
       log();
       break;
+    default:
+      console.log("unknown operator");
+      break;
+  }
+}
+
+function setOperand(value) {
+  if (!toCompute) {
+    firstOperand = value;
+    log();
+    return;
+  }
+
+  secondOperand = value;
+  log();
+}
+
+function setOperator(symbol) {
+  toCompute = true;
+  switch (symbol) {
+    case "+":
+      currentOperator = "add";
+      log();
+      break;
+    case "-":
+      currentOperator = "subtract";
+      log();
+      break;
+    case "×":
+      currentOperator = "multiply";
+      log();
+      break;
+    case "÷":
+      currentOperator = "divide";
+      log();
+      break;
+    case "=":
+      operate();
   }
 }
 
@@ -49,7 +100,13 @@ const computeButton = document.querySelector("#compute-button");
 
 // event listeners
 buttonsContainer.addEventListener("click", (e) => {
-  if (!e.target.matches(".operand-button")) return;
-
-  console.log(e.target.innerText);
+  if (e.target.matches(".operand-button")) {
+    console.log("clicked on operand button");
+    setOperand(e.target.innerText);
+  } else if (e.target.matches(".operator-button")) {
+    console.log("clicked on operator button");
+    setOperator(e.target.innerText);
+  } else if (e.target.matches(".utility-button")) {
+    console.log("clicked on an utility button");
+  }
 });
