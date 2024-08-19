@@ -92,7 +92,7 @@ body {
   grid-column-end: 2;
 }
 
-#comma-button {
+#dot-button {
   grid-column-start: 3;
   grid-column-end: 3;
 }

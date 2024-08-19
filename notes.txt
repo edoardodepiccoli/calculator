@@ -4,13 +4,6 @@ user can do three things
 - click on operator
 - click on utility
 
-let's create two variables to keep track of the operands 
-let first = null
-let second = null
-let operator = null 
-
-let toOperate = false
-let startAgain = false -> this is set after pressing the equals button
 
 these are the features that the calculator must have:
 - perform operations clicking number + operator + number + equals
@@ -23,6 +16,13 @@ these are the features that the calculator must have:
 - utility buttons just modify the current operand and do nothing else
 - unlike the ios calculator, this calculator can only process two numbers at the time
 
+let's create a few variables to keep track of the operands 
+let first = null
+let second = null
+let operator = null 
+
+let toOperate = false
+let startAgain = true -> this is set after pressing the equals button
 
 workflow
 
@@ -80,3 +80,51 @@ else
 startAgain = true
 
 -- utility buttons --
+- reset -
+set first = second = operator = null
+set toOperate = false
+set startAgain = true
+
+- change sign - 
+if !first
+    do nothing
+else
+    if first and !toOperate
+        update first
+    else if first and toOperate (this means the operator is not null and equal has not been clicked yet)
+        if second = null
+            do nothing
+        else 
+            update second
+
+- percentage - 
+if !first
+    do nothing
+else
+    if first and !toOperate
+        update first
+    else if first and toOperate (this means the operator is not null and equal has not been clicked yet)
+        if second = null
+            do nothing
+        else 
+            update second
+
+- dot -
+if !first
+    do nothing
+else
+    if first and !toOperate
+        dot first
+    else if first and toOperate (this means the operator is not null and equal has not been clicked yet)
+        if second = null
+            do nothing
+        else 
+            dot second
+
+    function dot(number){
+        if number (which is a string as it is passed to the function) contains "."
+            do nothing
+            return
+        else
+            return number + "."
+    }
