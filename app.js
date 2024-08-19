@@ -98,8 +98,10 @@ buttonsContainer.addEventListener("click", (e) => {
     handleOperand(e.target.innerText);
   } else if (e.target.matches(".operator-button")) {
     console.log("clicked operator button");
+    handleOperator(e.target.dataset.operation);
   } else if (e.target.matches(".compute-button")) {
     console.log("clicked compute button");
+    handleCompute();
   } else if (e.target.matches(".utility-button")) {
     console.log("clicked utility button");
   }
