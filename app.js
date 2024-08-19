@@ -22,6 +22,28 @@ function operate() {
   } else if (operator === "divide") {
     first = Number(first) / Number(second);
   }
+
+  log();
+}
+
+function handleOperand(value) {
+  if (first === null || startAgain) {
+    first = value;
+    startAgain = false;
+  } else {
+    if (first && toOperate === false) {
+      first = first + value;
+    } else if (first && toOperate) {
+      if (second === null) {
+        second = value;
+        toOperate = true;
+      } else {
+        second = second + value;
+      }
+    }
+  }
+
+  log();
 }
 
 // dom references
@@ -31,6 +53,7 @@ const buttonsContainer = document.querySelector(".buttons-container");
 buttonsContainer.addEventListener("click", (e) => {
   if (e.target.matches(".operand-button")) {
     console.log("clicked operand button");
+    handleOperand(e.target.innerText);
   } else if (e.target.matches(".operator-button")) {
     console.log("clicked operator button");
   } else if (e.target.matches(".compute-button")) {
