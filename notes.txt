@@ -1,3 +1,6 @@
+THIS IS OLD STUFF
+
+
 user can do three things
 
 - click on operand
@@ -40,10 +43,9 @@ if !first || startAgain
     initialize first
     startAgain = false
 else
-    if first and !toOperate
+    if first and !operator
         update first
-    else if first and toOperate (this means the operator is not null and equal has not been clicked yet)
-        if second = null
+    else if first and toOperate 
             initialize second
             toOperate = true
         else 

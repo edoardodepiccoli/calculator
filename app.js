@@ -26,67 +26,11 @@ function operate() {
   log();
 }
 
-function handleOperand(value) {
-  if (first === null || startAgain) {
-    first = value;
-    startAgain = false;
-  } else {
-    if (first && toOperate === false) {
-      first = first + value;
-    } else if (first && toOperate) {
-      if (second === null) {
-        second = value;
-        toOperate = true;
-      } else {
-        second = second + value;
-      }
-    }
-  }
+function handleOperand(value) {}
 
-  log();
-}
+function handleOperator(value) {}
 
-function handleOperator(value) {
-  if (first === null) {
-    log();
-    return;
-  } else {
-    if (operator === null) {
-      operator = value;
-    } else {
-      if (value === operator) {
-        log();
-        return;
-      } else {
-        if (toOperate === false) {
-          operator = value;
-        } else {
-          operate();
-          second = null;
-        }
-      }
-    }
-  }
-
-  log();
-}
-
-function handleCompute() {
-  if (first === null || operator === null) {
-    return;
-  } else {
-    if (second === null) {
-      second = first;
-      toOperate = true;
-      operate();
-    } else {
-      operate();
-    }
-  }
-
-  startAgain = true;
-  log();
-}
+function handleCompute() {}
 
 // dom references
 const buttonsContainer = document.querySelector(".buttons-container");
