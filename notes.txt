@@ -93,7 +93,7 @@ if !first
 else
     if first and !toOperate
         update first
-    else if first and toOperate (this means the operator is not null and equal has not been clicked yet)
+    else if first and toOperate 
         if second = null
             do nothing
         else 
@@ -105,7 +105,7 @@ if !first
 else
     if first and !toOperate
         update first
-    else if first and toOperate (this means the operator is not null and equal has not been clicked yet)
+    else if first and toOperate
         if second = null
             do nothing
         else 
@@ -117,7 +117,7 @@ if !first
 else
     if first and !toOperate
         dot first
-    else if first and toOperate (this means the operator is not null and equal has not been clicked yet)
+    else if first and toOperate
         if second = null
             do nothing
         else 
