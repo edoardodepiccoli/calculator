@@ -36,7 +36,8 @@ body {
   background-color: #505050;
 }
 
-.operator-button {
+.operator-button,
+.compute-button {
   background-color: #ff9500;
 }
 

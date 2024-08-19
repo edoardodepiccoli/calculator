@@ -14,52 +14,36 @@
       <div id="display">128</div>
       <div class="buttons-container">
         <!-- 4x5 grid with the calculator buttons achieved using grid -->
-        <div id="reset-button" class="utility-button button">AC</div>
-        <div id="change-sign-button" class="utility-button button">+/-</div>
-        <div id="percent-button" class="utility-button button">%</div>
-        <div
-          id="divide-button"
-          class="operator-button button"
-          data-value="divide"
-        >
+        <div class="utility-button button">AC</div>
+        <div class="utility-button button">+/-</div>
+        <div class="utility-button button">%</div>
+        <div class="operator-button button" data-operation="divide">
           &divide;
         </div>
 
-        <div id="seven-button" class="operand-button button">7</div>
-        <div id="eight-button" class="operand-button button">8</div>
-        <div id="nine-button" class="operand-button button">9</div>
-        <div
-          id="multiply-button"
-          class="operator-button button"
-          data-value="multiply"
-        >
+        <div class="operand-button button">7</div>
+        <div class="operand-button button">8</div>
+        <div class="operand-button button">9</div>
+        <div class="operator-button button" data-operation="multiply">
           &times;
         </div>
 
-        <div id="four-button" class="operand-button button">4</div>
-        <div id="five-button" class="operand-button button">5</div>
-        <div id="six-button" class="operand-button button">6</div>
-        <div
-          id="subtract-button"
-          class="operator-button button"
-          data-value="subtract"
-        >
-          -
-        </div>
+        <div class="operand-button button">4</div>
+        <div class="operand-button button">5</div>
+        <div class="operand-button button">6</div>
+        <div class="operator-button button" data-operation="subtract">-</div>
 
-        <div id="one-button" class="operand-button button">1</div>
-        <div id="two-button" class="operand-button button">2</div>
-        <div id="three-button" class="operand-button button">3</div>
-        <div id="add-button" class="operator-button button" data-value="add">
-          +
-        </div>
+        <div class="operand-button button">1</div>
+        <div class="operand-button button">2</div>
+        <div class="operand-button button">3</div>
+        <div class="operator-button button" data-operation="add">+</div>
 
         <div id="zero-button" class="operand-button button">0</div>
         <div id="comma-button" class="utility-button button">,</div>
         <div
-          id="compute-button"
-          class="operator-button button"
-          data-value="compute"
+          id="operate-button"
+          class="compute-button button"
+          data-operation="operate"
         >
           =
         </div>
