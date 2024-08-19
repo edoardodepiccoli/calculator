@@ -17,12 +17,20 @@ function log() {
 function operate() {
   if (operator === "add") {
     first = Number(first) + Number(second);
+    first = first.toFixed(2);
   } else if (operator === "subtract") {
     first = Number(first) - Number(second);
+    first = first.toFixed(2);
   } else if (operator === "multiply") {
     first = Number(first) * Number(second);
+    first = first.toFixed(2);
   } else if (operator === "divide") {
     first = Number(first) / Number(second);
+    first = first.toFixed(2);
+  }
+
+  if (first == Math.trunc(first)) {
+    first = Math.trunc(first);
   }
 
   updateDisplay(first);
