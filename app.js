@@ -10,79 +10,27 @@ function log() {
   );
 }
 
-function operate() {
-  if (!firstOperand || !currentOperator) {
-    console.log("missing first operand or operator");
-    log();
-    return;
-  }
-
-  if (!secondOperand) {
-    console.log(
-      "missing second operand, assigning first operand value to second operand"
-    );
-    secondOperand = firstOperand;
-  }
-
-  log();
-
-  switch (currentOperator) {
-    case "add":
-      firstOperand = Number(firstOperand) + Number(secondOperand);
-      log();
-      break;
-    case "subtract":
-      firstOperand = Number(firstOperand) - Number(secondOperand);
-      log();
-      break;
-    case "multiply":
-      firstOperand = Number(firstOperand) * Number(secondOperand);
-      log();
-      break;
-    case "divide":
-      firstOperand = Number(firstOperand) / Number(secondOperand);
-      log();
-      break;
-    default:
-      console.log("unknown operator");
-      break;
-  }
-}
-
 function setOperand(value) {
   if (!toCompute) {
-    firstOperand = value;
-    log();
-    return;
+    if (firstOperand) {
+      firstOperand = String(firstOperand) + String(value);
+    } else {
+      firstOperand = String(value);
+    }
+  } else {
+    if (secondOperand) {
+      secondOperand = String(secondOperand) + String(value);
+    } else {
+      secondOperand = String(value);
+    }
   }
 
-  secondOperand = value;
   log();
 }
 
-function setOperator(symbol) {
-  toCompute = true;
-  switch (symbol) {
-    case "+":
-      currentOperator = "add";
-      log();
-      break;
-    case "-":
-      currentOperator = "subtract";
-      log();
-      break;
-    case "×":
-      currentOperator = "multiply";
-      log();
-      break;
-    case "÷":
-      currentOperator = "divide";
-      log();
-      break;
-    case "=":
-      operate();
-  }
-}
+function setOperator(symbol) {}
+
+function operate() {}
 
 // dom references
 const buttonsContainer = document.querySelector(".buttons-container");
