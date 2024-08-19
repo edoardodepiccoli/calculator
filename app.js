@@ -1,3 +1,8 @@
+let firstOperand = null;
+let secondOperand = null;
+let currentOperation = null;
+
+// dom references
 const buttonsContainer = document.querySelector(".buttons-container");
 
 const resetButton = document.querySelector("#reset-button");
@@ -11,6 +16,7 @@ const subtractButton = document.querySelector("#subtract-button");
 const addButton = document.querySelector("#add-button");
 const computeButton = document.querySelector("#compute-button");
 
+// event listeners
 buttonsContainer.addEventListener("click", (e) => {
   if (!e.target.matches(".operand-button")) return;
 
