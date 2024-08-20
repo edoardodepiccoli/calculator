@@ -10,6 +10,8 @@ Try it live on [this link](https://edoardodepiccoli.github.io/calculator/)
 ## features to add
 
 - change hovering and active styles on buttons
+- add keyboard support
+- find a way to disable mobile double tap to zoom
 
 # old readme (before refactoring)
 
