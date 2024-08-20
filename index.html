@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
 
+    <script src="app.js" defer></script>
+
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -18,32 +20,32 @@
       <div class="buttons-container">
         <table>
           <tr>
-            <td colspan="2"><button>RESET</button></td>
-            <td colspan="2"><button>DELETE</button></td>
+            <td colspan="2"><button class="special-button">RESET</button></td>
+            <td colspan="2"><button class="special-button">DELETE</button></td>
           </tr>
           <tr>
             <td><button>7</button></td>
             <td><button>8</button></td>
             <td><button>9</button></td>
-            <td><button>÷</button></td>
+            <td><button class="operator-button">÷</button></td>
           </tr>
           <tr>
             <td><button>4</button></td>
             <td><button>5</button></td>
             <td><button>6</button></td>
-            <td><button>×</button></td>
+            <td><button class="operator-button">×</button></td>
           </tr>
           <tr>
             <td><button>1</button></td>
             <td><button>2</button></td>
             <td><button>3</button></td>
-            <td><button>-</button></td>
+            <td><button class="operator-button">-</button></td>
           </tr>
           <tr>
-            <td><button>.</button></td>
+            <td><button class="dot-button">.</button></td>
             <td><button>0</button></td>
-            <td><button>=</button></td>
-            <td><button>+</button></td>
+            <td><button class="equals-button">=</button></td>
+            <td><button class="operator-button">+</button></td>
           </tr>
         </table>
       </div>

@@ -1,6 +1,6 @@
 :root {
-  --font-size-primary: 32px;
-  --font-size-secondary: 24px;
+  --font-size-primary: 24px;
+  --font-size-secondary: 18px;
 }
 
 body {
@@ -31,6 +31,7 @@ body {
 
 .primary-display {
   margin-bottom: calc(var(--font-size-primary) / 2);
+  font-size: calc(var(--font-size-primary) * 2);
 }
 
 /* buttons dimensions and spacing */
@@ -50,4 +51,16 @@ button {
 
 table td {
   padding: 2px;
+}
+
+/* buttons colors */
+
+.operator-button {
+  background-color: #ff9500;
+  color: #d4d4d2;
+}
+
+.special-button {
+  background-color: #d4d4d2;
+  color: #505050;
 }
