@@ -35,8 +35,12 @@ const equalsButton = document.querySelector(".equals-button");
 resetButton.addEventListener("click", () => {
   handleResetButtonClick();
 });
-deleteButton.addEventListener("click", () => {});
-dotButton.addEventListener("click", () => {});
+deleteButton.addEventListener("click", () => {
+  handleDeleteButtonClick();
+});
+dotButton.addEventListener("click", () => {
+  handleDotButtonClick();
+});
 equalsButton.addEventListener("click", () => {
   handleEqualsButtonClick();
 });
@@ -88,13 +92,30 @@ function handleEqualsButtonClick() {
 
 function handleResetButtonClick() {
   primaryDisplay.innerText = "0";
-  secondaryDisplay.innerText = "&nbsp;";
+  secondaryDisplay.innerHTML = "&nbsp;";
 
   firstOperand = null;
   secondOperand = null;
   currentOperator = null;
 
   shouldResetScreen = true;
+}
+
+function handleDeleteButtonClick() {
+  string = primaryDisplay.innerText;
+  if (string.length === 1) {
+    primaryDisplay.innerText = "0";
+    return;
+  }
+  string = string.slice(0, string.length - 1);
+
+  primaryDisplay.innerText = string;
+}
+
+function handleDotButtonClick() {
+  if (primaryDisplay.innerText.includes(".")) return;
+
+  primaryDisplay.innerText += ".";
 }
 
 // utility functions
@@ -137,6 +158,9 @@ function operate() {
     default:
       break;
   }
+
+  result = result.toFixed(4);
+  if (result == Math.trunc(result)) result = Math.trunc(result);
 
   primaryDisplay.innerText = result;
   secondaryDisplay.innerText = `${firstOperand} ${currentOperator} ${secondOperand} =`;
