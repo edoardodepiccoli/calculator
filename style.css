@@ -1,122 +1,53 @@
-/* basic styles */
-
 :root {
-  --default-button-dimension: 50px;
+  --font-size-primary: 32px;
+  --font-size-secondary: 24px;
 }
 
 body {
   height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
 
   background-color: #1c1c1c;
   color: #d4d4d2;
-
-  font-family: sans-serif;
-  font-size: 24px;
-
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
 }
 
-.button {
-  width: var(--default-button-dimension);
-  height: var(--default-button-dimension);
-  border-radius: 50%;
+/* displays dimensions and spacing */
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.displays-container {
+  font-size: var(--font-size-primary);
 }
 
-.operand-button {
-  background-color: #505050;
-}
-
-.operator-button,
-.compute-button {
-  background-color: #ff9500;
-}
-
-.utility-button {
-  background-color: #d4d4d2;
-  color: #1c1c1c;
-}
-
-.buttons-container {
-  display: grid;
-}
-
-/* basic layout and grid */
-
-.calculator-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  gap: 20px;
-}
-
-/* display */
-
-#display {
-  width: 100%;
-  font-size: 48px;
-
+.secondary-display,
+.primary-display {
   text-align: right;
-  padding-right: 20px;
 }
 
-/* buttons */
-
-.buttons-container {
-  display: grid;
-  grid-template-columns:
-    var(--default-button-dimension) var(--default-button-dimension)
-    var(--default-button-dimension) var(--default-button-dimension);
-  grid-template-rows: 5;
-
-  column-gap: 10px;
-  row-gap: 10px;
+.secondary-display {
+  margin-bottom: calc(var(--font-size-secondary) / 2);
+  font-size: var(--font-size-secondary);
 }
 
-#zero-button {
-  /* to manually change every time detault-button-dimension is updated */
-  padding-right: 60px;
-  border-radius: var(--default-button-dimension);
-
-  grid-column-start: 1;
-  grid-column-end: 2;
+.primary-display {
+  margin-bottom: calc(var(--font-size-primary) / 2);
 }
 
-#dot-button {
-  grid-column-start: 3;
-  grid-column-end: 3;
+/* buttons dimensions and spacing */
+
+button {
+  font-size: var(--font-size-primary);
+
+  border: none;
+  background-color: white;
+  width: 100%;
+
+  background-color: #505050;
+  color: #d4d4d2;
+
+  padding: 1em;
 }
 
-#compute-button {
-  grid-column-start: 4;
-  grid-column-end: 4;
-}
-
-/* active button */
-
-.operand-button:hover {
-  background-color: #d4d4d2;
-  color: #505050;
-}
-
-.operator-button,
-.operand-button,
-.utility-button,
-#compute-button {
-  transition: all 0.2s;
-}
-
-.operation-active {
-  background-color: #d4d4d2;
-  color: #ff9500;
+table td {
+  padding: 2px;
 }

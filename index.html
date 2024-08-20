@@ -7,48 +7,45 @@
 
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
-    <script src="app.js" defer></script>
   </head>
+
   <body>
-    <div class="calculator-container">
-      <div id="display">0</div>
+    <div class="container">
+      <div class="displays-container">
+        <p class="secondary-display">0 +</p>
+        <p class="primary-display">0</p>
+      </div>
       <div class="buttons-container">
-        <!-- 4x5 grid with the calculator buttons achieved using grid -->
-        <div class="utility-button button" data-util="reset">AC</div>
-        <div class="utility-button button" data-util="change-sign">+/-</div>
-        <div class="utility-button button" data-util="percent">%</div>
-        <div class="operator-button button" data-operation="divide">
-          &divide;
-        </div>
-
-        <div class="operand-button button">7</div>
-        <div class="operand-button button">8</div>
-        <div class="operand-button button">9</div>
-        <div class="operator-button button" data-operation="multiply">
-          &times;
-        </div>
-
-        <div class="operand-button button">4</div>
-        <div class="operand-button button">5</div>
-        <div class="operand-button button">6</div>
-        <div class="operator-button button" data-operation="subtract">-</div>
-
-        <div class="operand-button button">1</div>
-        <div class="operand-button button">2</div>
-        <div class="operand-button button">3</div>
-        <div class="operator-button button" data-operation="add">+</div>
-
-        <div id="zero-button" class="operand-button button">0</div>
-        <div id="dot-button" class="utility-button button" data-util="dot">
-          .
-        </div>
-        <div
-          id="operate-button"
-          class="compute-button button"
-          data-operation="operate"
-        >
-          =
-        </div>
+        <table>
+          <tr>
+            <td colspan="2"><button>RESET</button></td>
+            <td colspan="2"><button>DELETE</button></td>
+          </tr>
+          <tr>
+            <td><button>7</button></td>
+            <td><button>8</button></td>
+            <td><button>9</button></td>
+            <td><button>÷</button></td>
+          </tr>
+          <tr>
+            <td><button>4</button></td>
+            <td><button>5</button></td>
+            <td><button>6</button></td>
+            <td><button>×</button></td>
+          </tr>
+          <tr>
+            <td><button>1</button></td>
+            <td><button>2</button></td>
+            <td><button>3</button></td>
+            <td><button>-</button></td>
+          </tr>
+          <tr>
+            <td><button>.</button></td>
+            <td><button>0</button></td>
+            <td><button>=</button></td>
+            <td><button>+</button></td>
+          </tr>
+        </table>
       </div>
     </div>
   </body>
