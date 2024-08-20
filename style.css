@@ -3,10 +3,6 @@
   --font-size-secondary: 18px;
 }
 
-button {
-  touch-action: manipulation;
-}
-
 body {
   height: 100vh;
   display: flex;
