@@ -32,7 +32,9 @@ const deleteButton = document.querySelector(".delete-button");
 const dotButton = document.querySelector(".dot-button");
 const equalsButton = document.querySelector(".equals-button");
 
-resetButton.addEventListener("click", () => {});
+resetButton.addEventListener("click", () => {
+  handleResetButtonClick();
+});
 deleteButton.addEventListener("click", () => {});
 dotButton.addEventListener("click", () => {});
 equalsButton.addEventListener("click", () => {
@@ -44,6 +46,8 @@ let firstOperand = null;
 let secondOperand = null;
 let currentOperator = null;
 
+// becomes true as soon as an operator is chosen
+// becomes false as soon as you start typing more digits
 let shouldResetScreen = false;
 
 function log() {
@@ -63,26 +67,34 @@ function handleNumberButtonClick(value) {
 }
 
 function handleOperatorButtonClick(operator) {
-  if (firstOperand && currentOperator && !shouldResetScreen) {
-    currentOperator = operator;
+  if (shouldResetScreen === false && currentOperator) {
+    secondOperand = primaryDisplay.innerText;
+    operate();
   }
 
-  if (shouldResetScreen) {
-    operate();
-    return;
-  }
+  currentOperator = operator;
 
   firstOperand = primaryDisplay.innerText;
+  secondaryDisplay.innerText = `${firstOperand} ${currentOperator}`;
 
-  secondaryDisplay.innerText = `${primaryDisplay.innerText} ${operator} `;
-  currentOperator = operator;
   shouldResetScreen = true;
 }
 
 function handleEqualsButtonClick() {
-  if (firstOperand === null || currentOperator === null) return;
-
+  if (!firstOperand || !currentOperator) return;
+  secondOperand = primaryDisplay.innerText;
   operate();
+}
+
+function handleResetButtonClick() {
+  primaryDisplay.innerText = "0";
+  secondaryDisplay.innerText = "&nbsp;";
+
+  firstOperand = null;
+  secondOperand = null;
+  currentOperator = null;
+
+  shouldResetScreen = true;
 }
 
 // utility functions
@@ -102,10 +114,8 @@ function getOperation(operationSymbol) {
 }
 
 function operate() {
-  console.log("operating");
-  secondOperand = primaryDisplay.textContent;
-
   let result;
+
   let currentOperation = getOperation(currentOperator);
 
   firstOperand = Number(firstOperand);
@@ -128,10 +138,12 @@ function operate() {
       break;
   }
 
-  secondaryDisplay.innerText = `${firstOperand} ${currentOperator} ${secondOperand} = `;
   primaryDisplay.innerText = result;
-  firstOperand = result;
+  secondaryDisplay.innerText = `${firstOperand} ${currentOperator} ${secondOperand} =`;
 
+  firstOperand = result;
   currentOperator = null;
-  shouldResetScreen = true;
+  secondOperand = null;
+
+  shouldResetScreen = false;
 }
