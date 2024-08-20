@@ -3,7 +3,7 @@
 # new reamde!
 
 This is a simple calculator project I did as an assignment for [theodinproject](theodinproject.com)
-The first version I coded was so messy and unreadable I just rewrote it from scratch. I left the old readme below so, by reading it and taking a look at the old commits, you can see my though process when coding this app.
+The first version I coded was so messy and unreadable I just rewrote it from scratch (I should have created a refactoring branch). I left the old readme below so, by reading it and taking a look at the old commits, you can see my though process when coding this app.
 
 Try it live on [this link](https://edoardodepiccoli.github.io/calculator/)
 
