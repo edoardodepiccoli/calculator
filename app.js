@@ -1,173 +1,147 @@
-// select displays
-const secondaryDisplay = document.querySelector(".secondary-display");
-const primaryDisplay = document.querySelector(".primary-display");
+class Calculator {
+  constructor() {
+    this.secondaryDisplay = document.querySelector(".secondary-display");
+    this.primaryDisplay = document.querySelector(".primary-display");
+    this.resetButton = document.querySelector(".reset-button");
+    this.deleteButton = document.querySelector(".delete-button");
+    this.dotButton = document.querySelector(".dot-button");
+    this.equalsButton = document.querySelector(".equals-button");
+    this.calculatorButtons = document.querySelectorAll("button");
 
-// select and add event listeners to number and operatos buttons
-const calculatorButtons = document.querySelectorAll("button");
+    this.firstOperand = null;
+    this.secondOperand = null;
+    this.currentOperator = null;
+    this.shouldResetScreen = false; // only true when just chosen the operator
 
-calculatorButtons.forEach((button) => {
-  if (
-    !button.matches(".special-button") &&
-    !button.matches(".operator-button") &&
-    !button.matches(".equals-button") &&
-    !button.matches(".dot-button")
-  ) {
-    button.addEventListener("click", () => {
-      handleNumberButtonClick(button.innerText);
+    this.addEventListeners();
+  }
+
+  addEventListeners() {
+    this.calculatorButtons.forEach((button) => {
+      if (
+        !button.matches(".special-button") &&
+        !button.matches(".operator-button") &&
+        !button.matches(".equals-button") &&
+        !button.matches(".dot-button")
+      ) {
+        button.addEventListener("click", () => this.handleNumberButtonClick(button.innerText));
+      }
     });
-  }
-});
-calculatorButtons.forEach((button) => {
-  if (button.matches(".operator-button")) {
-    button.addEventListener("click", () => {
-      handleOperatorButtonClick(button.innerText);
+
+    this.calculatorButtons.forEach((button) => {
+      if (button.matches(".operator-button")) {
+        button.addEventListener("click", () => this.handleOperatorButtonClick(button.innerText));
+      }
     });
+
+    this.resetButton.addEventListener("click", () => this.handleResetButtonClick());
+    this.deleteButton.addEventListener("click", () => this.handleDeleteButtonClick());
+    this.dotButton.addEventListener("click", () => this.handleDotButtonClick());
+    this.equalsButton.addEventListener("click", () => this.handleEqualsButtonClick());
   }
+
+  handleNumberButtonClick(value) {
+    if (this.shouldResetScreen || this.primaryDisplay.innerText === "0") {
+      this.primaryDisplay.innerText = value;
+      this.shouldResetScreen = false;
+    } else {
+      this.primaryDisplay.innerText += value;
+    }
+  }
+
+  handleOperatorButtonClick(operator) {
+    if (!this.shouldResetScreen && this.currentOperator) {
+      this.secondOperand = this.primaryDisplay.innerText;
+      this.operate();
+    }
+
+    this.currentOperator = operator;
+    this.firstOperand = this.primaryDisplay.innerText;
+    this.secondaryDisplay.innerText = `${this.firstOperand} ${this.currentOperator}`;
+    this.shouldResetScreen = true;
+  }
+
+  handleEqualsButtonClick() {
+    if (!this.firstOperand || !this.currentOperator) return;
+    this.secondOperand = this.primaryDisplay.innerText;
+    this.operate();
+  }
+
+  handleResetButtonClick() {
+    this.primaryDisplay.innerText = "0";
+    this.secondaryDisplay.innerHTML = "&nbsp;";
+    this.firstOperand = null;
+    this.secondOperand = null;
+    this.currentOperator = null;
+    this.shouldResetScreen = true;
+  }
+
+  handleDeleteButtonClick() {
+    let string = this.primaryDisplay.innerText;
+    if (string.length === 1) {
+      this.primaryDisplay.innerText = "0";
+      return;
+    }
+    string = string.slice(0, string.length - 1);
+    this.primaryDisplay.innerText = string;
+  }
+
+  handleDotButtonClick() {
+    if (this.primaryDisplay.innerText.includes(".")) return;
+    this.primaryDisplay.innerText += ".";
+  }
+
+  getOperation(operationSymbol) {
+    switch (operationSymbol) {
+      case "+":
+        return "addition";
+      case "-":
+        return "subtraction";
+      case "×":
+        return "multiplication";
+      case "÷":
+        return "division";
+      default:
+        return null;
+    }
+  }
+
+  operate() {
+    let result;
+    const currentOperation = this.getOperation(this.currentOperator);
+    this.firstOperand = Number(this.firstOperand);
+    this.secondOperand = Number(this.secondOperand);
+
+    switch (currentOperation) {
+      case "addition":
+        result = this.firstOperand + this.secondOperand;
+        break;
+      case "subtraction":
+        result = this.firstOperand - this.secondOperand;
+        break;
+      case "multiplication":
+        result = this.firstOperand * this.secondOperand;
+        break;
+      case "division":
+        result = this.firstOperand / this.secondOperand;
+        break;
+      default:
+        break;
+    }
+
+    result = result.toFixed(4);
+    if (result == Math.trunc(result)) result = Math.trunc(result);
+
+    this.primaryDisplay.innerText = result;
+    this.secondaryDisplay.innerText = `${this.firstOperand} ${this.currentOperator} ${this.secondOperand} =`;
+
+    this.firstOperand = result;
+    this.currentOperator = null;
+    this.secondOperand = null;
+    this.shouldResetScreen = false;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  new Calculator();
 });
-
-// select and add event listeners to other buttons
-const resetButton = document.querySelector(".reset-button");
-const deleteButton = document.querySelector(".delete-button");
-
-const dotButton = document.querySelector(".dot-button");
-const equalsButton = document.querySelector(".equals-button");
-
-resetButton.addEventListener("click", () => {
-  handleResetButtonClick();
-});
-deleteButton.addEventListener("click", () => {
-  handleDeleteButtonClick();
-});
-dotButton.addEventListener("click", () => {
-  handleDotButtonClick();
-});
-equalsButton.addEventListener("click", () => {
-  handleEqualsButtonClick();
-});
-
-// start with app logic
-let firstOperand = null;
-let secondOperand = null;
-let currentOperator = null;
-
-// becomes true as soon as an operator is chosen
-// becomes false as soon as you start typing more digits
-let shouldResetScreen = false;
-
-function log() {
-  console.log(
-    `${firstOperand} ${currentOperator} ${secondOperand}; ${shouldResetScreen}`
-  );
-}
-
-// handle button clicks
-function handleNumberButtonClick(value) {
-  if (shouldResetScreen || primaryDisplay.innerText === "0") {
-    primaryDisplay.innerText = value;
-    shouldResetScreen = false;
-  } else {
-    primaryDisplay.innerText += value;
-  }
-}
-
-function handleOperatorButtonClick(operator) {
-  if (shouldResetScreen === false && currentOperator) {
-    secondOperand = primaryDisplay.innerText;
-    operate();
-  }
-
-  currentOperator = operator;
-
-  firstOperand = primaryDisplay.innerText;
-  secondaryDisplay.innerText = `${firstOperand} ${currentOperator}`;
-
-  shouldResetScreen = true;
-}
-
-function handleEqualsButtonClick() {
-  if (!firstOperand || !currentOperator) return;
-  secondOperand = primaryDisplay.innerText;
-  operate();
-}
-
-function handleResetButtonClick() {
-  primaryDisplay.innerText = "0";
-  secondaryDisplay.innerHTML = "&nbsp;";
-
-  firstOperand = null;
-  secondOperand = null;
-  currentOperator = null;
-
-  shouldResetScreen = true;
-}
-
-function handleDeleteButtonClick() {
-  string = primaryDisplay.innerText;
-  if (string.length === 1) {
-    primaryDisplay.innerText = "0";
-    return;
-  }
-  string = string.slice(0, string.length - 1);
-
-  primaryDisplay.innerText = string;
-}
-
-function handleDotButtonClick() {
-  if (primaryDisplay.innerText.includes(".")) return;
-
-  primaryDisplay.innerText += ".";
-}
-
-// utility functions
-function getOperation(operationSymbol) {
-  switch (operationSymbol) {
-    case "+":
-      return "addition";
-    case "-":
-      return "subtraction";
-    case "×":
-      return "multiplication";
-    case "÷":
-      return "division";
-    default:
-      return null;
-  }
-}
-
-function operate() {
-  let result;
-
-  let currentOperation = getOperation(currentOperator);
-
-  firstOperand = Number(firstOperand);
-  secondOperand = Number(secondOperand);
-
-  switch (currentOperation) {
-    case "addition":
-      result = firstOperand + secondOperand;
-      break;
-    case "subtraction":
-      result = firstOperand - secondOperand;
-      break;
-    case "multiplication":
-      result = firstOperand * secondOperand;
-      break;
-    case "division":
-      result = firstOperand / secondOperand;
-      break;
-    default:
-      break;
-  }
-
-  result = result.toFixed(4);
-  if (result == Math.trunc(result)) result = Math.trunc(result);
-
-  primaryDisplay.innerText = result;
-  secondaryDisplay.innerText = `${firstOperand} ${currentOperator} ${secondOperand} =`;
-
-  firstOperand = result;
-  currentOperator = null;
-  secondOperand = null;
-
-  shouldResetScreen = false;
-}
