@@ -14,6 +14,10 @@ Try the calculator live [here](https://edoardodepiccoli.github.io/calculator/).
 - Reset and delete functionality
 - Decimal point support
 
+## Recent Updates
+
+The project has been recently refactored to follow object-oriented programming (OOP) principles. This refactoring improves the code structure, making it more modular and maintainable.
+
 ## Future Enhancements
 
 - Update button hover and active styles
