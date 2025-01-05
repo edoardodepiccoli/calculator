@@ -129,7 +129,6 @@ class Calculator {
         break;
     }
 
-    result = result.toFixed(4);
     if (result == Math.trunc(result)) result = Math.trunc(result);
 
     this.primaryDisplay.innerText = result;
